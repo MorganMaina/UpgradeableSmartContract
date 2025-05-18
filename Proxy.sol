@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-/// @title Minimal Upgradeable Proxy (EIP-1967)
-/// @notice Implements a simple proxy pattern with upgradeability following EIP-1967 standard
+///  Minimal Upgradeable Proxy (EIP-1967)
+///  Implements a simple proxy pattern with upgradeability following EIP-1967 standard
 contract Proxy {
     // Address of the admin (can upgrade implementation)
     address private immutable admin;
@@ -19,7 +19,7 @@ contract Proxy {
         }
     }
 
-    /// @notice Fallback function delegates calls to current implementation
+    ///  Fallback function delegates calls to current implementation
     fallback() external payable {
         assembly {
             let slot := 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc
@@ -33,10 +33,10 @@ contract Proxy {
         }
     }
 
-    /// @notice Receive function to accept plain Ether
+    /// Receive function to accept plain Ether
     receive() external payable {}
 
-    /// @notice Admin function to upgrade implementation address
+    ///  Admin function to upgrade implementation address
     function upgradeTo(address newImplementation) external {
         require(msg.sender == admin, "Only admin can upgrade");
         assembly {
@@ -45,7 +45,7 @@ contract Proxy {
         }
     }
 
-    /// @notice View the current implementation address
+    ///  View the current implementation address
     function getImplementation() external view returns (address impl) {
         assembly {
             let slot := 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc
